@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguridad en Línea - Sitio Web</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('imagen_de_fondo.jpg'); /* Cambiar 'imagen_de_fondo.jpg' por la ruta de tu imagen de fondo */
+            background-size: cover;
+            background-position: center;
+            color: #333;
+        }
+
+        /* Encabezado */
+        .header {
+            background-color: #004080;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Barra de navegación */
+        .navbar {
+            background-color: #66a3ff; /* Cambiar el color de la barra de navegación */
+            overflow: hidden;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            display: inline-block;
+            color: #ffffff;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 17px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #3d85c6; /* Cambiar el color al pasar el ratón sobre los enlaces */
+            color: #f2f2f2;
+        }
+
+        /* Contenido principal */
+        .content {
+            padding-top: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente para mejorar legibilidad */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #004080;
+            margin-top: 0;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        /* Estilos adicionales */
+        .content p {
+            margin: 15px 0;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        /* Media queries para diseño responsive */
+        @media screen and (max-width: 768px) {
+            .navbar a {
+                padding: 10px 15px;
+                font-size: 15px;
+            }
+
+            .content {
+                padding: 10px;
+            }
+        }
+    </style>
+    <script>
+        function loadContent(page) {
+            fetch(page)
+                .then(response => response.text())
+                .then(data => {
+                    const contentDiv = document.getElementById('dynamic-content');
+                    contentDiv.innerHTML = data;
+                    
+                    // Centra el contenido si es portada o bienvenida
+                    if (page === 'bienvenida.html') {
+                        contentDiv.style.textAlign = 'center';
+                    } else {
+                        contentDiv.style.textAlign = 'left';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading page:', error);
+                });
+        }
+
+        // Cargar contenido inicial al cargar la página
+        window.onload = function() {
+            loadContent('bienvenida.html');
+        };
+    </script>
+</head>
+<body>
+
+<!-- Encabezado -->
+<div class="header">
+    Seguridad en Línea
+</div>
+<!-- Barra de navegación -->
+<div class="navbar">
+    <a href="#" onclick="loadContent('bienvenida.html')">Bienvenida</a> <!-- Nueva pestaña -->
+    <a href="#" onclick="loadContent('portada.html')">Portada</a>
+    <a href="#" onclick="loadContent('inicio.html')">Inicio</a>
+    <a href="#" onclick="loadContent('consejos.html')">Consejos Generales</a>
+    <a href="#" onclick="loadContent('proteccion-contrasena.html')">Protección de Contraseña</a>
+    <a href="#" onclick="loadContent('seguridad-redes.html')">Seguridad en Redes Sociales</a>
+    <a href="#" onclick="loadContent('proteccion-malware.html')">Protección contra Malware</a>
+    <a href="#" onclick="loadContent('recursos.html')">Recursos y Enlaces Útiles</a>
+</div>
+<!-- Contenido principal -->
+<div class="content">
+    <div id="dynamic-content">
+        <!-- El contenido inicial se cargará aquí -->
+    </div>
+</div>
+
+</body>
+</html>
